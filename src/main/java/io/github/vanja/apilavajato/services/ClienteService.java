@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ClienteService {
 
@@ -17,5 +19,9 @@ public class ClienteService {
 
     public Cliente save(Cliente cliente) {
         return repository.save(cliente);
+    }
+
+    public Optional<Cliente> findById(Integer id){
+        return repository.findById(id);
     }
 }
