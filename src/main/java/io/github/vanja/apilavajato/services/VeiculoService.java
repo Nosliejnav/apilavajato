@@ -20,4 +20,13 @@ public class VeiculoService {
     public Optional<Veiculo> obterPorId(Integer id){
         return repository.findById(id);
     }
+
+    //    public void Atualizar(Veiculo veiculo){
+//        if(Veiculo.getId() == null){
+//            throw new IllegalArgumentException("Para atualizar, é necessário que o veiculo já esteja salvo. ");
+//
+//            repository.save(veiculo);
+//        }
+//    }
+//
 }

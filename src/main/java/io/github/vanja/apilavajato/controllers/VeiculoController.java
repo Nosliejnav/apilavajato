@@ -29,4 +29,19 @@ public class VeiculoController {
                                 "Veiculo não encontrado"));
     }
 
+
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Veiculo atualizar (@PathVariable Integer id,
+                            @RequestBody Veiculo veiculo){
+        return service
+                .obterPorId(id)
+                .map(veiculoExistente -> {
+                    veiculo.setId(veiculoExistente.getId());
+                    service.salvar(veiculo);
+                    return veiculoExistente;
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Veiculo não encontrado"));
+    }
+
 }

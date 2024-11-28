@@ -33,4 +33,18 @@ public class ClienteController {
                                 "Cliente não encontrado"));
     }
 
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Cliente update (@PathVariable Integer id,
+                        @RequestBody Cliente cliente){
+        return service
+                .findById(id)
+                .map(clienteExistente -> {
+                    cliente.setId(clienteExistente.getId());
+                    service.save(cliente);
+                    return clienteExistente;
+                } ).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Cliente não encontrado"));
+
+    }
 }

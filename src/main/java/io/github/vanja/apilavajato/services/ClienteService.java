@@ -24,4 +24,14 @@ public class ClienteService {
     public Optional<Cliente> findById(Integer id){
         return repository.findById(id);
     }
+
+//    public void update(Cliente cliente){
+//        if(Cliente.getId() == null){
+//            throw new IllegalArgumentException("Para atualizar, é necessário que o cliente já esteja salvo. ");
+//
+//            repository.save(cliente);
+//        }
+//    }
+//
+
 }
