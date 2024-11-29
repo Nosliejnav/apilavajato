@@ -68,7 +68,13 @@ public class VeiculoController {
                 .withStringMatcher(
                         ExampleMatcher.StringMatcher.CONTAINING);
         Example example = Example.of(filter, matcher);
-        return service.filtrarTodos(example);
+        List<Veiculo> veiculos = service.filtrarTodos(example);
+
+        if (veiculos.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Veiculo não encontrado");
+        }
+
+        return veiculos;
     }
 }
 
