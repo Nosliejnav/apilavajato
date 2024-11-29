@@ -11,26 +11,26 @@ import java.util.Optional;
 @Service
 public class ClienteService {
 
-    private final ClienteRepository repository;
+    private final ClienteRepository clienteRepository;
 
-    public ClienteService(ClienteRepository repository) {
-        this.repository = repository;
+    public ClienteService(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
     }
 
     public Cliente save(Cliente cliente) {
-        return repository.save(cliente);
+        return clienteRepository.save(cliente);
     }
 
     public Optional<Cliente> findById(Integer id){
-        return repository.findById(id);
+        return clienteRepository.findById(id);
     }
 
     public void delete(Cliente cliente){
-        repository.delete(cliente);
+        clienteRepository.delete(cliente);
     }
 
     public List<Cliente> findAll(Example<Cliente> example) {
-        return repository.findAll(example);
+        return clienteRepository.findAll(example);
     }
 
 }

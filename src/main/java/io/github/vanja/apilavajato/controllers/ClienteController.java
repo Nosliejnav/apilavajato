@@ -14,21 +14,21 @@ import java.util.List;
 @RequestMapping("clientes")
 public class ClienteController {
 
-    private final ClienteService service;
+    private final ClienteService clienteService;
 
-    public ClienteController(ClienteService service) {
-        this.service = service;
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente save ( @RequestBody Cliente cliente){
-        return service.save(cliente);
+        return clienteService.save(cliente);
     }
 
     @GetMapping("{id}")
     public Cliente findById ( @PathVariable Integer id){
-        return service
+        return clienteService
                 .findById(id)
                 .orElseThrow(() ->
                         new ResponseStatusException(HttpStatus.NOT_FOUND,
@@ -39,11 +39,11 @@ public class ClienteController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Cliente update ( @PathVariable Integer id,
                         @RequestBody Cliente cliente){
-        return service
+        return clienteService
                 .findById(id)
                 .map(clienteExistente -> {
                     cliente.setId(clienteExistente.getId());
-                    service.save(cliente);
+                    clienteService.save(cliente);
                     return clienteExistente;
                 } ).orElseThrow(() ->
                         new ResponseStatusException(HttpStatus.NOT_FOUND,
@@ -53,9 +53,9 @@ public class ClienteController {
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete( @PathVariable Integer id){
-        service.findById(id)
+        clienteService.findById(id)
                 .map( cliente ->{
-                    service.delete(cliente);
+                    clienteService.delete(cliente);
                     return cliente;
                 })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
@@ -71,6 +71,6 @@ public class ClienteController {
                 .withStringMatcher(
                         ExampleMatcher.StringMatcher.CONTAINING);
         Example example = Example.of(filter, matcher);
-        return service.findAll(example);
+        return clienteService.findAll(example);
     }
 }

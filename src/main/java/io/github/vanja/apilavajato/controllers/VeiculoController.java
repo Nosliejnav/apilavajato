@@ -1,6 +1,5 @@
 package io.github.vanja.apilavajato.controllers;
 
-import io.github.vanja.apilavajato.entities.Cliente;
 import io.github.vanja.apilavajato.entities.Veiculo;
 import io.github.vanja.apilavajato.services.VeiculoService;
 import lombok.AllArgsConstructor;
@@ -17,17 +16,17 @@ import java.util.List;
 @AllArgsConstructor
 public class VeiculoController {
 
-    private VeiculoService service;
+    private VeiculoService veiculoService ;
 
     @PostMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Veiculo salvar(@RequestBody Veiculo veiculo){
-        return service.salvar(veiculo);
+        return veiculoService.salvar(veiculo);
     }
 
     @GetMapping("{id}")
     public Veiculo obterPorId(@PathVariable Integer id){
-        return service
+        return veiculoService
                 .obterPorId(id)
                 .orElseThrow(() ->
                         new ResponseStatusException(HttpStatus.NOT_FOUND,
@@ -38,11 +37,11 @@ public class VeiculoController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Veiculo atualizar (@PathVariable Integer id,
                             @RequestBody Veiculo veiculo){
-        return service
+        return veiculoService
                 .obterPorId(id)
                 .map(veiculoExistente -> {
                     veiculo.setId(veiculoExistente.getId());
-                    service.salvar(veiculo);
+                    veiculoService.salvar(veiculo);
                     return veiculoExistente;
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Veiculo não encontrado"));
@@ -51,9 +50,9 @@ public class VeiculoController {
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar( @PathVariable Integer id){
-        service.obterPorId(id)
+        veiculoService.obterPorId(id)
             .map(veiculo ->{
-                service.deletar(veiculo);
+                veiculoService.deletar(veiculo);
                 return veiculo;
             })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
@@ -68,7 +67,7 @@ public class VeiculoController {
                 .withStringMatcher(
                         ExampleMatcher.StringMatcher.CONTAINING);
         Example example = Example.of(filter, matcher);
-        List<Veiculo> veiculos = service.filtrarTodos(example);
+        List<Veiculo> veiculos = veiculoService.filtrarTodos(example);
 
         if (veiculos.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Veiculo não encontrado");
