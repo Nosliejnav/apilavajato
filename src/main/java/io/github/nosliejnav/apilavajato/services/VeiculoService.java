@@ -1,8 +1,8 @@
-package io.github.vanja.apilavajato.services;
+package io.github.nosliejnav.apilavajato.services;
 
-import io.github.vanja.apilavajato.entities.Veiculo;
-import io.github.vanja.apilavajato.repositories.ClienteRepository;
-import io.github.vanja.apilavajato.repositories.VeiculoRepository;
+import io.github.nosliejnav.apilavajato.entities.Veiculo;
+import io.github.nosliejnav.apilavajato.repositories.ClienteRepository;
+import io.github.nosliejnav.apilavajato.repositories.VeiculoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;

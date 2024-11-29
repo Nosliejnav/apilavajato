@@ -1,7 +1,7 @@
-package io.github.vanja.apilavajato.controllers;
+package io.github.nosliejnav.apilavajato.controllers;
 
-import io.github.vanja.apilavajato.entities.Cliente;
-import io.github.vanja.apilavajato.services.ClienteService;
+import io.github.nosliejnav.apilavajato.entities.Cliente;
+import io.github.nosliejnav.apilavajato.services.ClienteService;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;

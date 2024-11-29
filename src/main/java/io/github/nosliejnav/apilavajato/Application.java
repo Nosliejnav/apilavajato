@@ -1,4 +1,4 @@
-package io.github.vanja.apilavajato;
+package io.github.nosliejnav.apilavajato;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

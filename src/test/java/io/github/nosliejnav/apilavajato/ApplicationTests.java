@@ -1,4 +1,4 @@
-package io.github.vanja.apilavajato;
+package io.github.nosliejnav.apilavajato;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

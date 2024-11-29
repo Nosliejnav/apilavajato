@@ -1,29 +1,25 @@
-package io.github.vanja.apilavajato.entities;
+package io.github.nosliejnav.apilavajato.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "tb_cliente")
-public class Cliente {
+@Table(name = "tb_veiculo")
+public class Veiculo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String nome;
+    private String marca;
 
-    private String cpf;
+    private String modelo;
 
-    private String endereco;
-
-    private String telefone;
-
-
-
+    private String placa;
 }

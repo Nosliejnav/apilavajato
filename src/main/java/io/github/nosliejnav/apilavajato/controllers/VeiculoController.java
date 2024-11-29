@@ -1,7 +1,7 @@
-package io.github.vanja.apilavajato.controllers;
+package io.github.nosliejnav.apilavajato.controllers;
 
-import io.github.vanja.apilavajato.entities.Veiculo;
-import io.github.vanja.apilavajato.services.VeiculoService;
+import io.github.nosliejnav.apilavajato.entities.Veiculo;
+import io.github.nosliejnav.apilavajato.services.VeiculoService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
