@@ -22,4 +22,8 @@ public class Veiculo {
     private String modelo;
 
     private String placa;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)  // Faz a ligação entre o Veículo e o Cliente
+    private Cliente cliente;  // Relacionamento com Cliente
 }

@@ -2,35 +2,36 @@ package io.github.vanja.apilavajato.services;
 
 import io.github.vanja.apilavajato.entities.Cliente;
 import io.github.vanja.apilavajato.repositories.ClienteRepository;
-import org.springframework.data.domain.Example;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
+
+@AllArgsConstructor
 public class ClienteService {
 
     private final ClienteRepository clienteRepository;
 
-    public ClienteService(ClienteRepository clienteRepository) {
-        this.clienteRepository = clienteRepository;
-    }
 
-    public Cliente save(Cliente cliente) {
+    public Cliente save(Cliente cliente){
+        Cliente clienteExiste = clienteRepository.findByCpf(cliente.getCpf());
+        if (clienteExiste != null) {
+            throw new RuntimeException("Cliente já existe!");
+        }
         return clienteRepository.save(cliente);
     }
 
-    public Optional<Cliente> findById(Integer id){
-        return clienteRepository.findById(id);
+    public Cliente findByCpf(String cpf) {
+        // Verifica se o CPF foi fornecido
+        if (cpf == null || cpf.isEmpty()) {
+            throw new RuntimeException("CPF é obrigatório.");
+        }
+        // Busca o cliente no banco de dados pelo CPF
+        Cliente cliente = clienteRepository.findByCpf(cpf);
+        // Se o cliente não for encontrado, lança um erro
+        if (cliente == null) {
+            throw new RuntimeException("Cliente não encontrado para o CPF informado.");
+        }
+        return cliente;
     }
-
-    public void delete(Cliente cliente){
-        clienteRepository.delete(cliente);
-    }
-
-    public List<Cliente> findAll(Example<Cliente> example) {
-        return clienteRepository.findAll(example);
-    }
-
 }
