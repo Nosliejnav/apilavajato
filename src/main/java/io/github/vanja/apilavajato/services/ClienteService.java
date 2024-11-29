@@ -1,7 +1,7 @@
-package io.github.nosliejnav.apilavajato.services;
+package io.github.vanja.apilavajato.services;
 
-import io.github.nosliejnav.apilavajato.entities.Cliente;
-import io.github.nosliejnav.apilavajato.repositories.ClienteRepository;
+import io.github.vanja.apilavajato.entities.Cliente;
+import io.github.vanja.apilavajato.repositories.ClienteRepository;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
