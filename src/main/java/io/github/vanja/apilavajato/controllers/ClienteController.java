@@ -1,9 +1,7 @@
 package io.github.vanja.apilavajato.controllers;
 
 import io.github.vanja.apilavajato.entities.Cliente;
-import io.github.vanja.apilavajato.repositories.ClienteRepository;
 import io.github.vanja.apilavajato.services.ClienteService;
-import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.logging.Filter;
 
 @RestController
 @RequestMapping("clientes")
@@ -64,15 +61,16 @@ public class ClienteController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Cliente não encontrado"));
     }
-//    @GetMapping
-//    public List<Cliente> find(Cliente filter){
-//        ExampleMatcher matcher = ExampleMatcher
-//                .matching()
-//                .withIgnoreCase()
-//                .withStringMatcher(
-//                        ExampleMatcher.StringMatcher.CONTAINING);
-//        Example example = Example.of(filter, matcher);
-//        return service.findAll(example);
-//    }
 
+
+    @GetMapping
+    public List<Cliente> find(Cliente filter) {
+        ExampleMatcher matcher = ExampleMatcher
+                .matching()
+                .withIgnoreCase()
+                .withStringMatcher(
+                        ExampleMatcher.StringMatcher.CONTAINING);
+        Example example = Example.of(filter, matcher);
+        return service.findAll(example);
+    }
 }
