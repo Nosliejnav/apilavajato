@@ -8,7 +8,7 @@
 		<version>3.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>io.github.vanja</groupId>
+	<groupId>io.github.nosliejnav</groupId>
 	<artifactId>apilavajato</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>apilavajato</name>
