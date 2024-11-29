@@ -4,9 +4,14 @@ import io.github.vanja.apilavajato.entities.Cliente;
 import io.github.vanja.apilavajato.repositories.ClienteRepository;
 import io.github.vanja.apilavajato.services.ClienteService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+import java.util.logging.Filter;
 
 @RestController
 @RequestMapping("clientes")
@@ -20,12 +25,12 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente save (@RequestBody Cliente cliente){
+    public Cliente save ( @RequestBody Cliente cliente){
         return service.save(cliente);
     }
 
     @GetMapping("{id}")
-    public Cliente findById(@PathVariable Integer id){
+    public Cliente findById ( @PathVariable Integer id){
         return service
                 .findById(id)
                 .orElseThrow(() ->
@@ -35,7 +40,7 @@ public class ClienteController {
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Cliente update (@PathVariable Integer id,
+    public Cliente update ( @PathVariable Integer id,
                         @RequestBody Cliente cliente){
         return service
                 .findById(id)
@@ -43,8 +48,31 @@ public class ClienteController {
                     cliente.setId(clienteExistente.getId());
                     service.save(cliente);
                     return clienteExistente;
-                } ).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "Cliente não encontrado"));
-
+                } ).orElseThrow(() ->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND,
+                                "Cliente não encontrado"));
     }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete( @PathVariable Integer id){
+        service.findById(id)
+                .map( cliente ->{
+                    service.delete(cliente);
+                    return cliente;
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Cliente não encontrado"));
+    }
+//    @GetMapping
+//    public List<Cliente> find(Cliente filter){
+//        ExampleMatcher matcher = ExampleMatcher
+//                .matching()
+//                .withIgnoreCase()
+//                .withStringMatcher(
+//                        ExampleMatcher.StringMatcher.CONTAINING);
+//        Example example = Example.of(filter, matcher);
+//        return service.findAll(example);
+//    }
+
 }

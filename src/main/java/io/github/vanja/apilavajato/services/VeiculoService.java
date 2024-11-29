@@ -29,4 +29,8 @@ public class VeiculoService {
 //        }
 //    }
 //
+
+    public void deletar(Veiculo veiculo){
+        repository.delete(veiculo);
+    }
 }

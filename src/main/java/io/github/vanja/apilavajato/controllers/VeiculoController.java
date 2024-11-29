@@ -44,4 +44,16 @@ public class VeiculoController {
                         "Veiculo não encontrado"));
     }
 
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletar( @PathVariable Integer id){
+        service.obterPorId(id)
+            .map(veiculo ->{
+                service.deletar(veiculo);
+                return veiculo;
+            })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Veiculo não encontrado"));
+    }
 }
+
