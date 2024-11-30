@@ -15,6 +15,7 @@ public class Veiculo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_veiculo")
     private Integer id;
 
     private String marca;
@@ -26,4 +27,5 @@ public class Veiculo {
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)  // Faz a ligação entre o Veículo e o Cliente
     private Cliente cliente;  // Relacionamento com Cliente
+
 }

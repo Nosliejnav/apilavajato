@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("veiculos")
-@AllArgsConstructor
 public class VeiculoController {
 
     private VeiculoService veiculoService ;
@@ -25,5 +25,6 @@ public class VeiculoController {
         Veiculo veiculo = veiculoService.findById(id);
         return ResponseEntity.ok(veiculo);
     }
+
 }
 

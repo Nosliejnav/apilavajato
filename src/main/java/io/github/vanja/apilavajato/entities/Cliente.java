@@ -14,6 +14,7 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_cliente")
     private Integer id;
 
     private String nome;
@@ -23,7 +24,5 @@ public class Cliente {
     private String endereco;
 
     private String telefone;
-
-
 
 }
