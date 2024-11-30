@@ -2,16 +2,20 @@ package io.github.vanja.apilavajato.services;
 
 import io.github.vanja.apilavajato.entities.Cliente;
 import io.github.vanja.apilavajato.repositories.ClienteRepository;
+import io.github.vanja.apilavajato.repositories.VeiculoRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
+
 
 @AllArgsConstructor
 public class ClienteService {
 
     private final ClienteRepository clienteRepository;
-
+    private final VeiculoRepository veiculoRepository;
 
     public Cliente save(Cliente cliente){
         Cliente clienteExiste = clienteRepository.findByCpf(cliente.getCpf());
@@ -34,4 +38,15 @@ public class ClienteService {
         }
         return cliente;
     }
+
+    public void delete(Integer id) {
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+        // Remove os veículos associados ao cliente
+        veiculoRepository.deleteByCliente(cliente);
+        // Remove o cliente
+        clienteRepository.delete(cliente);
+    }
+
+
 }
