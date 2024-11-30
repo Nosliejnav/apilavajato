@@ -20,18 +20,10 @@ public class ClienteController {
         return clienteService.save(cliente);
     }
 
-    // Endpoint para buscar cliente pelo CPF
     @GetMapping("/{cpf}")
-    public ResponseEntity<?> getClienteByCpf(@PathVariable String cpf) {
-        try {
-            // Chama o serviço para buscar o cliente pelo CPF
-            Cliente cliente = clienteService.findByCpf(cpf);
-            // Retorna o cliente encontrado com sucesso
-            return new ResponseEntity<>(cliente, HttpStatus.OK);
-        } catch (RuntimeException e) {
-            // Retorna a mensagem de erro caso o CPF não seja válido ou o cliente não seja encontrado
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<Cliente> getClienteByCpf(@PathVariable String cpf) {
+        Cliente cliente = clienteService.findByCpf(cpf);
+        return ResponseEntity.ok(cliente);
     }
 
     @DeleteMapping("/{id}")
@@ -45,6 +37,5 @@ public class ClienteController {
     public void update(@PathVariable Integer id, @RequestBody Cliente cliente) {
         clienteService.update(id, cliente);
     }
-
 
 }

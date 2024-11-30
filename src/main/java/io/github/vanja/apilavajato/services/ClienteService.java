@@ -62,5 +62,4 @@ public class ClienteService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
     }
 
-
 }
