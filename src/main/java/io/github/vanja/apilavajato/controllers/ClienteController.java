@@ -40,5 +40,11 @@ public class ClienteController {
         clienteService.delete(id);
     }
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@PathVariable Integer id, @RequestBody Cliente cliente) {
+        clienteService.update(id, cliente);
+    }
+
 
 }

@@ -48,5 +48,19 @@ public class ClienteService {
         clienteRepository.delete(cliente);
     }
 
+    public Cliente update(Integer id, Cliente clienteAtualizado) {
+        return clienteRepository.findById(id)
+                .map(clienteExistente -> {
+                    // Atualiza os campos do cliente existente com os valores recebidos
+                    clienteExistente.setNome(clienteAtualizado.getNome());
+                    clienteExistente.setCpf(clienteAtualizado.getCpf());
+                    clienteExistente.setEndereco(clienteAtualizado.getEndereco());
+                    clienteExistente.setTelefone(clienteAtualizado.getTelefone());
+                    // Salva o cliente atualizado
+                    return clienteRepository.save(clienteExistente);
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+    }
+
 
 }
