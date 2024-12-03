@@ -20,7 +20,7 @@ class ClienteRepositoryTest {
     public void deveSalvarClienteComSucesso() {
         // Arrange
         Cliente cliente = new Cliente();
-        cliente.setNome("João Silva");
+        cliente.setNome("Fulano");
         cliente.setCpf("12345678901");
         cliente.setEndereco("Quadra 01 Casa 01");
         cliente.setTelefone("61988776644");
@@ -31,11 +31,12 @@ class ClienteRepositoryTest {
 
         // Assert
         assertNotNull(clienteSalvo.getId());
-        assertEquals("João Silva", clienteSalvo.getNome());
+        assertEquals("Fulano", clienteSalvo.getNome());
         assertEquals("12345678901", clienteSalvo.getCpf());
         assertEquals("Quadra 01 Casa 01", clienteSalvo.getEndereco());
         assertEquals("61988776644", clienteSalvo.getTelefone());
     }
+
 
 //    @Test
 //    void findByCpf() {
