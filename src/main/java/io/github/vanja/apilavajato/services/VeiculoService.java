@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class VeiculoService {
@@ -37,4 +39,11 @@ public class VeiculoService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Veículo não encontrado"));
     }
 
+//    public List<Veiculo> findAll() {
+//        List<Veiculo> veiculos = veiculoRepository.findAll();
+//        if (veiculos.isEmpty()) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum veículo encontrado");
+//        }
+//        return veiculos;
+//    }
 }

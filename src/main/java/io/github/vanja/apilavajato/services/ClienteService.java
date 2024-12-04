@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-
-
 @AllArgsConstructor
 public class ClienteService {
 
@@ -59,7 +57,7 @@ public class ClienteService {
                     // Salva o cliente atualizado
                     return clienteRepository.save(clienteExistente);
                 })
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado para atualização"));
     }
 
 }

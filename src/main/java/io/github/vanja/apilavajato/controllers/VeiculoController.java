@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("veiculos")
@@ -25,6 +27,13 @@ public class VeiculoController {
         Veiculo veiculo = veiculoService.findById(id);
         return ResponseEntity.ok(veiculo);
     }
+
+//    // Endpoint para listar todos os veículos
+//    @GetMapping
+//    public ResponseEntity<List<Veiculo>> getAllVeiculos() {
+//        List<Veiculo> veiculos = veiculoService.findAll();
+//        return ResponseEntity.ok(veiculos);
+//    }
 
 }
 
